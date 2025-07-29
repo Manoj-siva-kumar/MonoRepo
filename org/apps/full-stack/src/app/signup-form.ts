@@ -1,22 +1,23 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { FormControl, FormGroup, ReactiveFormsModule, RequiredValidator, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RouterModule, RouterOutlet, RouterLink, Router } from '@angular/router';
+import { FormControl, FormGroup, ReactiveFormsModule, RequiredValidator, Validators } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { SignupForm } from './signup-form';
 
 @Component({
-  imports: [RouterModule,ReactiveFormsModule,CommonModule,HttpClientModule,SignupForm],
-  selector: 'app-root',
-  templateUrl: './app.html',
-  styleUrl: './app.css',
-  standalone:true
+  selector: 'app-signup-form',
+  imports: [CommonModule,RouterOutlet,HttpClientModule, ReactiveFormsModule],
+  templateUrl: './signup-form.html',
+  styleUrl: './signup-form.css',
 })
-export class App {
-
-  isVisible = true;
-  toggle = () => this.isVisible=!this.isVisible;
-  constructor(private readonly http:HttpClient){}
+export class SignupForm {
+  
+isVisible = true;
+toggle() {
+  this.isVisible = false;
+  this.router.navigate(['/login']); // Absolute path to login component
+}
+  constructor(private readonly http:HttpClient,private router: Router){}
   
   formBinding = new FormGroup({
     firstname: new FormControl('',[Validators.required]),

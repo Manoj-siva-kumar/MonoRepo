@@ -1,0 +1,82 @@
+<div *ngIf="isVisible" class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div 
+        class="mx-auto w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl bg-gray-200 mt-20 p-8 px-10 font-serif rounded-2xl opacity-95">
+        <form [formGroup]="formBinding" class="flex flex-col gap-6 items-center">
+            <h1 class="text-3xl opacity-70 font-semibold">Sign up</h1>
+
+            <!-- First & Last Name -->
+            <div class="flex gap-4 w-full">
+                <div class="flex flex-col relative w-1/2">
+                    <input formControlName="firstname" name="firstname" type="text" id="firstname" placeholder=" "
+                        class="peer border px-2 py-2 rounded-lg w-full">
+                    <label for="firstname" class="absolute top-2 left-3 font-semibold text-zinc-600
+        peer-focus:-top-2 peer-focus:text-sm peer-focus:bg-gray-200
+        peer-not-placeholder-shown:-top-2 peer-not-placeholder-shown:text-sm peer-not-placeholder-shown:bg-gray-200">
+                        FirstName
+                    </label>
+                    <div
+                        *ngIf="formBinding.get('firstname')?.touched && formBinding.get('firstname')?.errors?.['required']">
+                        <h1 class="text-red-600 text-xs relative ">* FirstName is required</h1>
+                    </div>
+                </div>
+
+                <div class="flex flex-col relative w-1/2">
+                    <input formControlName="lastname" name="lastname" type="text" id="lastname" placeholder=" "
+                        class="peer border px-2 py-2 rounded-lg w-full">
+                    <label for="lastname" class="absolute top-2 left-3 font-semibold text-zinc-600
+        peer-focus:-top-2 peer-focus:text-sm peer-focus:bg-gray-200
+        peer-not-placeholder-shown:-top-2 peer-not-placeholder-shown:text-sm peer-not-placeholder-shown:bg-gray-200">
+                        LastName
+                    </label>
+                    <div
+                        *ngIf="formBinding.get('lastname')?.touched && formBinding.get('lastname')?.errors?.['required']">
+                        <h1 class="text-red-600 text-xs relative ">* LastName is required</h1>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Email -->
+            <div class="flex flex-col relative w-full">
+                <input formControlName="email" name="email" id="email" type="email" placeholder=" "
+                    class="peer w-full border px-2 py-2 rounded-lg" />
+                <label for="email" class="absolute top-2 left-3 font-semibold text-zinc-600
+        peer-focus:-top-2 peer-focus:bg-gray-200 peer-focus:text-sm
+        peer-not-placeholder-shown:-top-2 peer-not-placeholder-shown:text-sm peer-not-placeholder-shown:bg-gray-200">
+                    Email Id
+                </label>
+                <div *ngIf="formBinding.get('email')?.touched && formBinding.get('email')?.errors?.['required']">
+                    <h1 class="text-red-600 text-xs relative">* Email Id is required</h1>
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div class="flex flex-col relative w-full">
+                <input formControlName="password" name="password" id="password" type="password" placeholder=" "
+                    class="peer w-full border px-2 py-2 rounded-lg" />
+                <label for="password" class="absolute top-2 left-3 font-semibold text-zinc-600
+        peer-focus:-top-2 peer-focus:bg-gray-200 peer-focus:text-sm
+        peer-not-placeholder-shown:-top-2 peer-not-placeholder-shown:text-sm peer-not-placeholder-shown:bg-gray-200">
+                    Password
+                </label>
+                <div *ngIf="formBinding.get('password')?.touched && formBinding.get('password')?.errors?.['required']">
+                    <h1 class="text-red-600 text-xs relative">* Password is required</h1>
+                </div>
+                <div *ngIf="formBinding.get('password')?.touched && formBinding.get('password')?.errors?.['minlength']">
+                    <h1 class="text-red-600 text-xs relative">* Minimum 6 characters required</h1>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="flex flex-col items-center gap-1 w-full">
+                <input type="button" value="Sign up" (click)="PostData()"
+                    class="border w-full sm:w-1/3 rounded-lg text-lg text-white opacity-85 bg-blue-700 py-2 cursor-pointer hover:opacity-100" />
+                <span class="mb-6 font-semibold opacity-80 hover:opacity-100 text-center text-sm sm:text-base">
+                    Already have an account?
+                    <a (click)="toggle()"  class="underline text-blue-500 cursor-pointer">Sign in</a>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
+<router-outlet></router-outlet>
