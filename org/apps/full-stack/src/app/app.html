@@ -1,10 +1,10 @@
-<div class="mx-auto w-130 min-h bg-gray-200 mt-40 font-serif rounded-2xl opacity-95">
-    <form [formGroup]="formBinding"  class="p-4 flex flex-col gap-6 items-center">
-        <h1 class="text-4xl p-2">Login</h1>
+<div *ngIf="isVisible" class="mx-auto w-150 min-h bg-gray-200 mt-40 font-serif rounded-2xl opacity-95">
+    <form [formGroup]="formBinding" class="p-4 flex flex-col gap-6 items-center">
+        <h1 class="text-3xl  opacity-70 font-semibold p-2 ">Sign up</h1>
         <div class="flex justify-between gap-4">
             <div class="flex flex-col relative">
                 <input formControlName="firstname" name="firstname" type="text" id="username" placeholder=" "
-                    class="peer w-50  border px-2 py-2 rounded-lg">
+                    class="peer w-60  border px-2 py-2 rounded-lg">
                 <label for="username"
                     class="absolute top-2 left-3 font-semibold text-zinc-600
            peer-focus:-top-2 peer-focus:text-sm peer-focus:bg-gray-200
@@ -16,7 +16,7 @@
             </div>
             <div class="flex flex-col relative">
                 <input formControlName="lastname" name="lastname" id="lastname" type="text" placeholder=" "
-                    class="peer w-50 border px-2 py-2 rounded-lg">
+                    class="peer w-60 border px-2 py-2 rounded-lg">
                 <label for="lastname"
                     class="absolute top-2 left-3 font-semibold text-zinc-600
             peer-focus:-top-2 peer-focus:text-sm peer-focus:bg-gray-200
@@ -28,7 +28,7 @@
         </div>
         <div class="flex flex-col relative">
             <input formControlName="email" name="email" id="email" type="email" placeholder=" "
-                class="peer w-105 border px-2 py-2 rounded-lg">
+                class="peer w-125 border px-2 py-2 rounded-lg">
             <label for="email"
                 class="absolute top-2 left-3 font-semibold text-zinc-600
             peer-focus:-top-2 peer-focus:bg-gray-200 peer-focus:text-sm
@@ -40,7 +40,7 @@
         </div>
         <div class="flex flex-col relative">
             <input formControlName="password" name="password" id="password" type="password" placeholder=" "
-                class="peer w-105 border px-2 py-2 rounded-lg">
+                class="peer w-125 border px-2 py-2 rounded-lg">
             <label for="password"
                 class="absolute top-2 left-3 font-semibold text-zinc-600
             peer-focus:-top-2 peer-focus:bg-gray-200 peer-focus:text-sm
@@ -49,10 +49,14 @@
                 <h1 class="text-red-600 text-xs relative ">* Password is required</h1>
             </div>
             <div *ngIf="formBinding.get('password')?.touched &&  formBinding.get('password')?.errors?.['minlength']">
-                <h1 class="text-red-600 text-xs relative ">* Minimum 6 characters  required</h1>
+                <h1 class="text-red-600 text-xs relative ">* Minimum 6 characters required</h1>
             </div>
         </div>
-        <input type="button" value="sign up"  (click)="PostData()"
-            class="border w-30 rounded-lg text-lg text-white opacity-85 bg-blue-700 py-2 cursor-pointer hover:opacity-100 px-2 my-3 cursor">
+        <div class="flex flex-col items-center gap-1">
+            <input type="button" value="sign up" (click)="PostData()"
+                class="border w-50 rounded-lg text-lg text-white opacity-85 bg-blue-700 py-2 cursor-pointer hover:opacity-100 px-2 mt-1 cursor">
+            <span class="mb-6 font-semibold opacity-80 hover:opacity-100">Already has an account? <a (click)="toggle()" routerLink="login" class="underline text-blue-500 cursor-pointer">sign in</a></span>
+        </div>
     </form>
 </div>
+<router-outlet></router-outlet>

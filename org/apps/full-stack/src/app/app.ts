@@ -13,6 +13,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 })
 export class App {
 
+  isVisible = true;
+  toggle = () => this.isVisible=!this.isVisible;
   constructor(private readonly http:HttpClient){}
   
   formBinding = new FormGroup({
@@ -24,9 +26,9 @@ export class App {
 
   PostData(){
     if (this.formBinding.valid){
-      this.http.post('http://localhost:3001/api',this.formBinding.value).subscribe({
+      this.http.post('http://localhost:3002/api',this.formBinding.value).subscribe({
         next : (response) => {alert('Data is sent to Backend!')},
-        error : (err) => {alert('Data is not Transmitted!')}
+        error : (err) => {console.error(err); alert('Data is not Transmitted!')}
       });
     }
     else alert('Fill all the Fields!')

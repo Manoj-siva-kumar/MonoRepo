@@ -1,17 +1,28 @@
-import { Body, Controller, Get, Post,  } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, } from '@nestjs/common';
 import { AppService } from './app.service';
-import { userDetails } from '../userDetails.entity';
 import { CreateUserDto } from './user.dto';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(
+    private readonly appService: AppService,
+  ) { }
   @Post()
-  async Postdata(@Body() Data:CreateUserDto){
+  async Postdata(@Body() Data: CreateUserDto) {
     return this.appService.create(Data);
   }
   @Get()
-  async getData(){
+  async getData() {
     return this.appService.retriveData();
+  }
+
+  @Get('login')
+  async DataCheck(@Query('email') emailId: string, @Query('password') passwordIn: string): Promise<any> {
+    return this.appService.verifyData(emailId, passwordIn);
+  }
+  DataValue: any[] = [];
+  @Post('login')
+  async backendCheck(): Promise<any> {
+    return await this.appService.DataVerify();
   }
 }

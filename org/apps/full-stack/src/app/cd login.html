@@ -1,0 +1,66 @@
+<div class="mx-auto w-120 min-h bg-gray-200 mt-40 font-serif rounded-2xl opacity-95">
+    <form [formGroup]="formBind" class="p-4 flex flex-col gap-6 items-center">
+        <h1 class="text-4xl p-2 opacity-70 font-semibold">sign in</h1>
+        <div class="flex flex-col relative">
+            <input #emailInput formControlName="email" name="email" id="login-email" type="email" placeholder=" "
+                class="peer w-80 border px-2 py-2 rounded-lg">
+            <label for="login-email"
+                class="absolute top-2 left-3 font-semibold text-zinc-600
+            peer-focus:-top-2 peer-focus:bg-gray-200 peer-focus:text-sm
+            peer-not-placeholder-shown:-top-2 peer-not-placeholder-shown:text-sm peer-not-placeholder-shown:bg-gray-200">Email
+                Id</label>
+            <div *ngIf="formBind.get('email')?.touched &&  formBind.get('email')?.errors?.['required']">
+                <h1 class="text-red-600 text-xs relative ">* Email Id is required</h1>
+            </div>
+        </div>
+        <div class="flex flex-col relative">
+            <input #passwordInput formControlName="password" name="password" id="login-password" type="password"
+                placeholder=" " class="peer w-80 border px-2 py-2 rounded-lg">
+            <label for="login-password"
+                class="absolute top-2 left-3 font-semibold text-zinc-600
+            peer-focus:-top-2 peer-focus:bg-gray-200 peer-focus:text-sm
+            peer-not-placeholder-shown:-top-2 peer-not-placeholder-shown:text-sm peer-not-placeholder-shown:bg-gray-200">Password</label>
+            <div *ngIf="formBind.get('password')?.touched &&  formBind.get('password')?.errors?.['required']">
+                <h1 class="text-red-600 text-xs relative ">* Password is required</h1>
+            </div>
+            <div *ngIf="formBind.get('password')?.touched &&  formBind.get('password')?.errors?.['minlength']">
+                <h1 class="text-red-600 text-xs relative ">* Minimum 6 characters required</h1>
+            </div>
+        </div>
+
+        <div class="flex flex-col items-center gap-1 mb-4">
+
+            <input type="button" value="login" (click)="getData(emailInput.value, passwordInput.value)"
+                class="border w-40 rounded-lg text-lg text-white opacity-85 bg-blue-700 py-2 cursor-pointer hover:opacity-100 px-2  cursor">
+            <div *ngIf="isValid" class="flex gap-1 justify-center items-center">
+                <svg viewBox="-0.5 0 25 25" class="w-5 h-5 text-red-600" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#d20f0f">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <path
+                            d="M10.8809 16.15C10.8809 16.0021 10.9101 15.8556 10.967 15.7191C11.024 15.5825 11.1073 15.4586 11.2124 15.3545C11.3175 15.2504 11.4422 15.1681 11.5792 15.1124C11.7163 15.0567 11.8629 15.0287 12.0109 15.03C12.2291 15.034 12.4413 15.1021 12.621 15.226C12.8006 15.3499 12.9399 15.5241 13.0211 15.7266C13.1024 15.9292 13.122 16.1512 13.0778 16.3649C13.0335 16.5786 12.9272 16.7745 12.7722 16.9282C12.6172 17.0818 12.4204 17.1863 12.2063 17.2287C11.9922 17.2711 11.7703 17.2494 11.5685 17.1663C11.3666 17.0833 11.1938 16.9426 11.0715 16.7618C10.9492 16.5811 10.8829 16.3683 10.8809 16.15ZM11.2408 13.42L11.1008 8.20001C11.0875 8.07453 11.1008 7.94766 11.1398 7.82764C11.1787 7.70761 11.2424 7.5971 11.3268 7.5033C11.4112 7.40949 11.5144 7.33449 11.6296 7.28314C11.7449 7.2318 11.8697 7.20526 11.9958 7.20526C12.122 7.20526 12.2468 7.2318 12.3621 7.28314C12.4773 7.33449 12.5805 7.40949 12.6649 7.5033C12.7493 7.5971 12.813 7.70761 12.8519 7.82764C12.8909 7.94766 12.9042 8.07453 12.8909 8.20001L12.7609 13.42C12.7609 13.6215 12.6809 13.8149 12.5383 13.9574C12.3958 14.0999 12.2024 14.18 12.0009 14.18C11.7993 14.18 11.606 14.0999 11.4635 13.9574C11.321 13.8149 11.2408 13.6215 11.2408 13.42Z"
+                            fill="currentColor"></path>
+                        <path
+                            d="M12 21.5C17.1086 21.5 21.25 17.3586 21.25 12.25C21.25 7.14137 17.1086 3 12 3C6.89137 3 2.75 7.14137 2.75 12.25C2.75 17.3586 6.89137 21.5 12 21.5Z"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </g>
+                </svg>
+                <p class="text-red-600 ">Invalid Email or Password!</p>
+            </div>
+            <div *ngIf="islogin" class="flex gap-1 justify-center items-center">
+                <svg class="w-5 h-5 text-green-700" fill="currentColor" viewBox="0 0 200 200" data-name="Layer 1"
+                    id="Layer_1" xmlns="http://www.w3.org/2000/svg" stroke="#11ee2a">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <title></title>
+                        <path
+                            d="M100,15a85,85,0,1,0,85,85A84.93,84.93,0,0,0,100,15Zm0,150a65,65,0,1,1,65-65A64.87,64.87,0,0,1,100,165Zm25-91.5-29,35L76,94c-4.5-3.5-10.5-2.5-14,2s-2.5,10.5,2,14c6,4.5,12.5,9,18.5,13.5,4.5,3,8.5,7.5,14,8,1.5,0,3.5,0,5-1l3-3,22.5-27c4-5,8-9.5,12-14.5,3-4,4-9,.5-13L138,71.5c-3.5-2.5-9.5-2-13,2Z">
+                        </path>
+                    </g>
+                </svg>
+                <p class="text-green-700">Access granted, Welcome {{firstname}}!</p>
+            </div>
+        </div>
+    </form>
+</div>
