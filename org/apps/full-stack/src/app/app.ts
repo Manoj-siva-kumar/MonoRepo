@@ -6,7 +6,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { SignupForm } from './signup-form';
 
 @Component({
-  imports: [RouterModule,ReactiveFormsModule,CommonModule,HttpClientModule,SignupForm],
+  imports: [RouterModule,ReactiveFormsModule,CommonModule,HttpClientModule],
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.css',

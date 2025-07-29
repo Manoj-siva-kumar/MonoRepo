@@ -4,7 +4,7 @@ import { App } from './app';
 import { SignupForm } from './signup-form';
 
 export const appRoutes: Route[] = [
-  { path: '', redirectTo: 'signup', pathMatch: 'full' }, // default to signup
+  { path: '', redirectTo: 'signup', pathMatch: 'full' }, 
   { path: 'signup', component: SignupForm },
   { path: 'login', component: Login },
 ];

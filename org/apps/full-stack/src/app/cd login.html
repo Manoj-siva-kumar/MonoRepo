@@ -6,7 +6,7 @@
       <!-- Email Field -->
       <div class="flex flex-col relative w-full">
         <input #emailInput formControlName="email" name="email" id="login-email" type="email" placeholder=" "
-          class="peer w-full border px-2 py-2 rounded-lg" />
+          class="peer w-full border focus:outline-black px-2 py-2 rounded-lg" />
         <label for="login-email"
           class="absolute top-2 left-3 font-semibold text-zinc-600
                  peer-focus:-top-2 peer-focus:bg-gray-200 peer-focus:text-sm
@@ -21,7 +21,7 @@
       <!-- Password Field -->
       <div class="flex flex-col relative w-full">
         <input #passwordInput formControlName="password" name="password" id="login-password" type="password"
-          placeholder=" " class="peer w-full border px-2 py-2 rounded-lg" />
+          placeholder=" " class="peer focus:outline-black w-full border px-2 py-2 rounded-lg" />
         <label for="login-password"
           class="absolute top-2 left-3 font-semibold text-zinc-600
                  peer-focus:-top-2 peer-focus:bg-gray-200 peer-focus:text-sm
@@ -37,9 +37,13 @@
       </div>
 
       <!-- Submit -->
-      <div class="flex flex-col items-center gap-2 w-full">
+      <div class="flex flex-col  items-center gap-0 w-full">
         <input type="button" value="Login" (click)="getData(emailInput.value, passwordInput.value)"
-          class="w-full sm:w-1/2 rounded-lg text-lg text-white bg-blue-700 py-2 cursor-pointer hover:opacity-100" />
+          class="opacity-90 w-full sm:w-1/2  rounded-lg text-lg text-white bg-blue-700 py-2 cursor-pointer hover:opacity-100" />
+          <span class="mb-2 font-semibold opacity-80 hover:opacity-100 text-center text-sm sm:text-base">
+                    Don't have an account? 
+                    <a (click)="toggle()"  class="transition-all underline hover:text-blue-700 text-blue-600 cursor-pointer">Sign up</a>
+                </span>
 
         <!-- Invalid Message -->
         <div *ngIf="isValid" class="flex gap-1 justify-center items-center text-red-600 text-sm">
